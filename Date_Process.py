@@ -22,6 +22,8 @@ if o.DoModal()==1:
     df=df[['transaction_date','posted_date','sort_code','ac_number','type','description','credit','debit','balance']]
     df.to_clipboard(excel=True,index=False,header=False)
 #%%   
+
+#here's my new code to find duplicates but it's shit and broken
     win32ui.MessageBox('Success! Paste away!','Transaction Formatter 2000')
 else:
     win32ui.MessageBox('Well ok then, bye I guess','Transaction Formatter 2000',win32con.MB_ICONSTOP)
