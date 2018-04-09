@@ -11,7 +11,7 @@ import win32con
 import os.path
 #%% Creating a function to import the csv and re-order the columns
 def open_and_column_fix(csv_path):
-    df=pd.read_csv(csv_path,skiprows=5,header=0,
+    df=pd.read_csv(csv_path,skiprows=4,header=0,
                    names=['transaction_date','posted_date','type','description','b1','credit','debit','balance','b2','b3'],
                    )
     df.transaction_date=df.description.str.split(' ON ',expand=True)[1]
