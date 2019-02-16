@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jan 20 14:18:07 2018
-
+#Changelog bug fixes and performance improvements
 @author: Ro
 """
+
+
 
 import pandas as pd
 import win32ui
