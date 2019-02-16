@@ -9,12 +9,13 @@ import pandas as pd
 import win32ui
 import win32con
 import os.path
+import budgetML
 #%% Creating a function to import the csv and re-order the columns
 def open_and_column_fix(csv_path):
-    df=pd.read_csv(csv_path,skiprows=4,header=0,
+    df=pd.read_csv(csv_path, encoding='latin', quotechar='"', skiprows=4,header=0,
                    names=['transaction_date','posted_date','type','description','b1','credit','debit','balance','b2','b3'],
                    )
-    df.transaction_date=df.description.str.split(' ON ',expand=True)[1]
+    df.transaction_date=df.description.str.split(' ON ',expand=True)[1] #split and then return column 1 (firts column is 0)
     df.loc[pd.isnull(df.transaction_date),'transaction_date']=df.loc[pd.isnull(df.transaction_date),'posted_date']
     df['sort_code']="'09-01-28"
     df['ac_number']=95349265
@@ -42,7 +43,15 @@ if o.DoModal()==1: # if you click a file, and then ok
     print(len(df))
     df=df.drop_duplicates(keep=False)
     print(len(df))
-    df.to_clipboard(excel=True,index=False,header=False)
+    
+ 
+#%% Importing eirinn's machine learning code
+    data=pd.read_excel(r"C:\Users\Ro\OneDrive\Budgets\2018 Budget.xlsx",sheet_name='London Data')
+    budgetML.add_training_data(data)
+    df_predicted=budgetML.build_and_predict(df)   
+
+#%% copy to clipboard    
+    df_predicted.to_clipboard(excel=True,index=False,header=False,sep='\t')
     status=f"{len(df_current)-len(df)} duplicates removed"
 # here's my new code to find duplicates but it's shit and broken    
 
@@ -51,9 +60,6 @@ if o.DoModal()==1: # if you click a file, and then ok
     win32ui.MessageBox(f"Success! {status}, remaining transactions pasted to clipboard",'Transaction Formatter 2000')
 else:
     win32ui.MessageBox('Bye bye','Transaction Formatter 2000',win32con.MB_ICONSTOP)
-
-
-
 
 
 
