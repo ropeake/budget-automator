@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jan 20 14:18:07 2018
-#Changelog bug fixes and performance improvements
-#Changelog Committing comments to keep track of branches - columns not yet added!
+#Changelog 16 Feb 2019 bug fixes and performance improvements
+#Changelog 20 Apr 2019 Committing comments to keep track of branches - columns not yet added!
 @author: Ro
 """
 
@@ -52,6 +52,7 @@ if o.DoModal()==1: # if you click a file, and then ok
     data=pd.read_excel(r"C:\Users\Ro\OneDrive\Budgets\2018 Budget.xlsx",sheet_name='London Data')
     budgetML.add_training_data(data)
     df_predicted=budgetML.build_and_predict(df)   
+    df_predicted=df_predicted[['transaction_date','posted_date','sort_code','ac_number','type','description','credit','debit','balance','Confidence','Assignment','Category']]
 
 #%% copy to clipboard    
     df_predicted.to_clipboard(excel=True,index=False,header=False,sep='\t')
