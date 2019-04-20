@@ -3,7 +3,7 @@
 Created on Sat Jan 20 14:18:07 2018
 #Changelog 16 Feb 2019 bug fixes and performance improvements
 #Changelog 20 Apr 2019 Committing comments to keep track of branches - columns re-ordered, branch committed
-#Changelog 20 Apr 2019 New branch to add code that launches excel and opens budget
+#Changelog 20 Apr 2019 New branch to adds code that launches excel and opens budget
 @author: Ro
 """
 
@@ -47,7 +47,6 @@ if o.DoModal()==1: # if you click a file, and then ok
     print(len(df))
     df=df.drop_duplicates(keep=False)
     print(len(df))
-    
  
 #%% Importing eirinn's machine learning code
     data=pd.read_excel(r"C:\Users\Ro\OneDrive\Budgets\2018 Budget.xlsx",sheet_name='London Data')
@@ -57,12 +56,13 @@ if o.DoModal()==1: # if you click a file, and then ok
 
 #%% copy to clipboard    
     df_predicted.to_clipboard(excel=True,index=False,header=False,sep='\t')
-    status=f"{len(df_current)-len(df)} duplicates removed"
-# here's my new code to find duplicates but it's shit and broken    
-
-
-#%%
+    status=f"{len(df_current)-len(df)} duplicates removed" #define the variable 'status' so that it can be used in the message box
     win32ui.MessageBox(f"Success! {status}, remaining transactions pasted to clipboard",'Transaction Formatter 2000')
+    
+#%% Launch excel and open budget
+    os.system('start EXCEL.exe "C:/Users/Ro/OneDrive/Budgets/2019 Budget.xlsx"') 
+    
+#%% Final closure of the orignal if when the dialouge box was opened
 else:
     win32ui.MessageBox('Bye bye','Transaction Formatter 2000',win32con.MB_ICONSTOP)
 
