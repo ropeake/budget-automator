@@ -2,6 +2,7 @@
 """
 Created on Sat Jan 20 14:18:07 2018
 #Changelog bug fixes and performance improvements
+#Changelog Committing comments to keep track of branches - columns not yet added!
 @author: Ro
 """
 
