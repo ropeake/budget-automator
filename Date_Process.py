@@ -2,7 +2,8 @@
 """
 Created on Sat Jan 20 14:18:07 2018
 #Changelog 16 Feb 2019 bug fixes and performance improvements
-#Changelog 20 Apr 2019 Committing comments to keep track of branches - columns not yet added!
+#Changelog 20 Apr 2019 Committing comments to keep track of branches - columns re-ordered, branch committed
+#Changelog 20 Apr 2019 New branch to add code that launches excel and opens budget
 @author: Ro
 """
 
